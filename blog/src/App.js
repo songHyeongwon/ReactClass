@@ -8,7 +8,7 @@ function App() {
   let [글제목,글제목수정] = useState(['남자 코트 추천' , '강남 우동 맛집', '파이썬 독학']);
   let posts = '강남고기 맛집';
   let [따봉, 따봉수정] = useState(0);
-//주석추가
+
   function 제목바꾸기() {
     var arr = [...글제목];
     arr[0] = '여자 코트 추천';
