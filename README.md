@@ -7,5 +7,8 @@ https://youtu.be/LclObYwGj90<BR>
 <br>
 <br>
 <h2> learning-react-master 리액트를 다루는 기술 </h2>
+  이미지             |  소개
+:-------------------------:|:-------------------------:
+![image](https://user-images.githubusercontent.com/51102922/140736766-69d3fe82-b318-4487-8832-0cb3bc326c0e.png) |  읽는중~~♪
   
-![image](https://user-images.githubusercontent.com/51102922/140736766-69d3fe82-b318-4487-8832-0cb3bc326c0e.png)
+
