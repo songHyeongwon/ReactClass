@@ -4,14 +4,20 @@ import './App.css';
 import MyComponent from './MyComponent';
 import Counter from './Counter';
 import Say from './Say';
-
+import EventPractice from './EventPractice';
+import EventPractice2 from './EventPractice2';
 const App = () => {
-  const name = "송현권";
+  const name = '송현권';
   return (
     <div>
-      아 <MyComponent name={name} numType={10}>칠드런</MyComponent>
-      <Counter/>
-      <Say></Say>
+      <EventPractice />
+      <EventPractice2/>
+      {/* 아{' '} */}
+      {/* <MyComponent name={name} numType={10}>
+        칠드런
+      </MyComponent>
+      <Counter />
+      <Say></Say> */}
     </div>
   );
 };
@@ -29,7 +35,6 @@ const App = () => {
     return <div className="App" style={style}>{name}</div>;
   }
 }*/
-
 
 /*function App() {
   const name = '송현권';
