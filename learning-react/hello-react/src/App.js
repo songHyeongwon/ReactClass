@@ -1,26 +1,48 @@
 //import logo from './logo.svg';
 import './App.css';
-//import React, {Component} from 'react';
+import React, {Component} from 'react';
 import MyComponent from './MyComponent';
 import Counter from './Counter';
 import Say from './Say';
 import EventPractice from './EventPractice';
 import EventPractice2 from './EventPractice2';
-const App = () => {
-  const name = '송현권';
-  return (
-    <div>
-      <EventPractice />
-      <EventPractice2/>
-      {/* 아{' '} */}
-      {/* <MyComponent name={name} numType={10}>
-        칠드런
-      </MyComponent>
-      <Counter />
-      <Say></Say> */}
-    </div>
-  );
-};
+import ValidationSample from './ValidationSample';
+//import ScrollBox from './ScrollBox';
+//import React, { Component } from 'react';
+import ScrollBox from './ScrollBox';
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <ScrollBox ref={ref => (this.scrollBox = ref)} />
+        <button onClick={() => this.scrollBox.scrollToBottom()}>
+          맨 밑으로
+        </button>
+      </div>
+    );
+  }
+}
+export default App;
+
+
+// const App = () => {
+//   const name = '송현권';
+//   return (
+//     <div>
+//       <ScrollBox ref={(a) => this.aa=a} />
+//       <button onClick={()=> this.scrollBox1.scrollToBottom()}>맨아래로</button>
+//       {/* <ValidationSample/> */}
+//       {/* <EventPractice /> */}
+//       {/* <EventPractice2/> */}
+//       {/* 아{' '} */}
+//       {/* <MyComponent name={name} numType={10}>
+//         칠드런
+//       </MyComponent>
+//       <Counter />
+//       <Say></Say> */}
+//     </div>
+//   );
+// };
 
 /*class App extends Component {
   render() {
@@ -59,4 +81,4 @@ const App = () => {
   );
 }*/
 
-export default App;
+//export default App;
