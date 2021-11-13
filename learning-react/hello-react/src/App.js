@@ -1,28 +1,41 @@
 //import logo from './logo.svg';
 import './App.css';
 import React, {Component} from 'react';
-import MyComponent from './MyComponent';
-import Counter from './Counter';
-import Say from './Say';
-import EventPractice from './EventPractice';
-import EventPractice2 from './EventPractice2';
-import ValidationSample from './ValidationSample';
+import IterationSample from './IterationSample';
+//import MyComponent from './MyComponent';
+//import Counter from './Counter';
+//import Say from './Say';
+//import EventPractice from './EventPractice';
+//import EventPractice2 from './EventPractice2';
+//import ValidationSample from './ValidationSample';
 //import ScrollBox from './ScrollBox';
 //import React, { Component } from 'react';
-import ScrollBox from './ScrollBox';
+// import ScrollBox from './ScrollBox';
+
 class App extends Component {
   render() {
     return (
       <div>
-        <ScrollBox ref={ref => (this.scrollBox = ref)} />
-        <button onClick={() => this.scrollBox.scrollToBottom()}>
-          맨 밑으로
-        </button>
+        <IterationSample/>
       </div>
     );
   }
 }
 export default App;
+
+// class App extends Component {
+//   render() {
+//     return (
+//       <div>
+//         <ScrollBox ref={ref => (this.scrollBox = ref)} />
+//         <button onClick={() => this.scrollBox.scrollToBottom()}>
+//           맨 밑으로
+//         </button>
+//       </div>
+//     );
+//   }
+// }
+// export default App;
 
 
 // const App = () => {
