@@ -2,7 +2,7 @@ import React , {useState} from 'react';
 import Counter from './Counter';
 import Info from './Info';
 import Average from './Average';
-
+//깃허브 연결
 const App = () => {
   const [visible , setVisible] = useState(false);
   return (
