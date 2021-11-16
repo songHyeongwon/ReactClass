@@ -1,6 +1,10 @@
-@import './style/utils.scss'; //스타일 폴더로 분리
+//@import 'utils.scss'; //스타일 폴더로 분리
 .SassComponent {
   display: flex;
+  background: $oc-gray-2;
+  @include media('<768px') {
+    background: $oc-gray-9;
+  }
   .box {
     background: red; // 일반 CSS 에선 .SassComponent .box 와 마찬가지
     cursor: pointer;
