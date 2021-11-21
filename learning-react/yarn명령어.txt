@@ -1,0 +1,14 @@
+--노드 모듈 재설치
+yarn install
+--scss 읽기
+yarn add node-sass@5.0.0
+--라우터라이브러리
+yarn add react-router-dom@5
+--클래스 네임과 리액트 아이콘
+yarn add classnames react-icons
+--쿼리 문자열 변환
+yarn add qs
+
+--제거
+yarn remove react-router-dom
+
