@@ -8,7 +8,12 @@ yarn add react-router-dom@5
 yarn add classnames react-icons
 --쿼리 문자열 변환
 yarn add qs
+--HTTP요청 클라이언트
+yarn add axios
+--뉴스 뷰어 컴포넌트
+yarn add styled-components
 
 --제거
 yarn remove react-router-dom
 
+yarn remove styled-components
