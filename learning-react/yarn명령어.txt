@@ -12,8 +12,14 @@ yarn add qs
 yarn add axios
 --뉴스 뷰어 컴포넌트
 yarn add styled-components
+--parcel 프로젝트
+yarn global add parcel-bundler
+npm install -g parcel-bundler
+parcel index.html
 
+--리덕스 모듈
+yarn add redux
 --제거
 yarn remove react-router-dom
-
 yarn remove styled-components
+yarn global remove parcel-bundler
