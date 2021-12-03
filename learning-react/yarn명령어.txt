@@ -22,6 +22,9 @@ yarn add redux-devtools-extension
 --리덕스 모듈
 yarn add redux
 yarn add react-redux
+yarn add redux-actions
+yarn add immer
+
 --제거
 yarn remove react-router-dom
 yarn remove styled-components
