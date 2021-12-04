@@ -24,7 +24,7 @@ yarn add redux
 yarn add react-redux
 yarn add redux-actions
 yarn add immer
-
+yarn add redux react-redux redux-actions
 --제거
 yarn remove react-router-dom
 yarn remove styled-components
