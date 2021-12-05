@@ -3,14 +3,22 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createStore ,applyMiddleware} from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import rootReducer from "./modules/index.js";
+import rootReducer, { rootSage } from "./modules/index.js";
 import loggerMiddleware from "./lib/loggerMiddleware";
-import {createLogger} from 'redux-logger';
+import { createLogger } from "redux-logger";
+import ReduxThunk from "redux-thunk";
+import createSagaMiddleware from "redux-saga";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const logger = createLogger();
-const store = createStore(rootReducer , applyMiddleware(logger));
+const sageMiddleware = createSagaMiddleware();
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(logger, ReduxThunk, sageMiddleware))
+);
+sageMiddleware.run(rootSage);
 
 ReactDOM.render(
   <Provider store={store}>

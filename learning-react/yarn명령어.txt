@@ -25,7 +25,13 @@ yarn add react-redux
 yarn add redux-actions
 yarn add redux-logger
 yarn add immer
-yarn add redux react-redux redux-actions 
+yarn add redux react-redux redux-actions
+yarn add redux-devtools-extension
+
+--리덕스 비동기 미들웨어
+yarn add redux-thunk
+yarn add redux-saga
+
 --제거
 yarn remove react-router-dom
 yarn remove styled-components
