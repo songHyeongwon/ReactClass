@@ -32,6 +32,9 @@ yarn add redux-devtools-extension
 yarn add redux-thunk
 yarn add redux-saga
 
+--코드 스플리팅
+yarn add @loadable/component
+
 --제거
 yarn remove react-router-dom
 yarn remove styled-components
