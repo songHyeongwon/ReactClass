@@ -35,7 +35,10 @@ yarn add redux-saga
 --코드 스플리팅
 yarn add @loadable/component
 
-yarn add react-router-dom
+--서버 사이드 랜더링 번들링용
+yarn add webpack-node-externals
+--node.js 웹프레임워크
+yarn add express
 
 --제거
 yarn remove react-router-dom

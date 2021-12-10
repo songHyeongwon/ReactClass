@@ -4,7 +4,7 @@ import './Blue.css'
 const Blue = () => {
     return (
         <div className='Blue'>
-            red
+            blue
         </div>
     );
 };
