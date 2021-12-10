@@ -35,6 +35,8 @@ yarn add redux-saga
 --코드 스플리팅
 yarn add @loadable/component
 
+yarn add react-router-dom
+
 --제거
 yarn remove react-router-dom
 yarn remove styled-components
