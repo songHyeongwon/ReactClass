@@ -46,7 +46,7 @@ yarn add redux react-redux redux-thunk axios
 yarn remove react-router-dom
 yarn remove styled-components
 yarn global remove parcel-bundler
-
+yarn add express
 
 yarn start:server
 yarn build:server
