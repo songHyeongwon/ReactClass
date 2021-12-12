@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Users from '../components/Users';
 import { connect } from 'react-redux';
 import { getUsers } from '../modules/users';
-//import { Preloader } from '../lib/PreloadContext';
+import { Preloader2 } from '../lib/PreloadContext';
 
-const {useEffect} = React;
+//const {useEffect} = React;
 
 const UsersContainer = ({ users, getUsers }) => {
   // 컴포넌트 마운트될 때 호출
@@ -15,7 +15,7 @@ const UsersContainer = ({ users, getUsers }) => {
   return (
     <>
       <Users users={users} />
-      {/* <Preloader resolve={getUsers} /> */}
+      <Preloader2 resolve={getUsers} />
     </>
   );
 };
