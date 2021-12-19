@@ -44,7 +44,6 @@ yarn add express
 yarn add redux react-redux redux-thunk axios
 
 
---백엔드 서버 개발
 --koa 프레임워크
 yarn add koa
 --eslint 개발용 추가
@@ -53,8 +52,12 @@ yarn add --dev eslint
 yarn run eslint --init 
 --prettier 코드스타일 ESlint에 관리하지 않도록 
 yarn add eslint-config-prettier
-
-
+--자동 빌드 모듈
+yarn add --dev nodemon
+--koa 라우터 기능 추가
+yarn add koa-router
+--koa 바디 분리기
+yarn add koa-bodyparser
 
 
 --제거
