@@ -1,8 +1,27 @@
+require('dotenv').config();
 const Koa = require('koa');
 const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
+const mongoose = require('mongoose');
 
 const api = require('./api');
+//비구조화 할당을 통해 process.env 내부 값에 대한 레퍼런스 만들기
+const {PORT , MONGO_URI} = process.env;
+
+// 몽구스 버전이 6.0이상이라면 몽구스는 항상 
+// useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false, 
+// 로 기억하고 실행하기 때문에 더이상 지원하지 않는다는 이야기이다.
+mongoose
+  .connect(MONGO_URI, { 
+    useNewUrlParser: true
+    //, useFindAndModify: false 
+  })
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch(e => {
+    console.error(e);
+  });
 
 const app = new Koa();
 const router = new Router();
@@ -55,7 +74,9 @@ app.use(router.routes()).use(router.allowedMethods());
 //   ctx.body = 'hello world';
 // });
 
-app.listen(4000, () => {
-  console.log('Listenint to pors 4000');
+//POST가 지정되어 있지 않다면 4000을 사용
+const port = PORT || 4000;
+app.listen(port, () => {
+  console.log('Listenint to pors %d',port);
 });
 //heurm server is listening to port 4000
