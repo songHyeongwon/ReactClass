@@ -59,6 +59,9 @@ yarn add koa-router
 --koa 바디 분리기
 yarn add koa-bodyparser
 
+--몽고DB 기반 ODM 라이브러리
+yarn add mongose dotenv
+
 
 --제거
 yarn remove react-router-dom
