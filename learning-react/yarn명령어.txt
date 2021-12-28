@@ -62,6 +62,8 @@ yarn add koa-bodyparser
 --몽고DB 기반 ODM 라이브러리
 yarn add mongose dotenv
 
+--node.js에서 import / export 문법을 사용가능
+yarn add esm
 
 --제거
 yarn remove react-router-dom
