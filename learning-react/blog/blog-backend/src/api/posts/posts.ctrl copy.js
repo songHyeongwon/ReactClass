@@ -1,4 +1,4 @@
-_dbf‍.x([["write",()=>write],["list",()=>list],["read",()=>read],["remove",()=>remove],["replace",()=>replace],["update",()=>update]]);let postId = 1; // id의 초깃값입니다.
+let postId = 1; // id의 초깃값입니다.
 
 // posts 배열 초기 데이터
 const posts = [
@@ -13,7 +13,7 @@ const posts = [
 POST /api/posts
 { title, body }
 */
-       const write = ctx => {
+export const write = ctx => {
   // REST API의 request body는 ctx.request.body에서 조회할 수 있습니다.
   const { title, body } = ctx.request.body;
   postId += 1; // 기존 postId 값에 1을 더합니다.
@@ -25,14 +25,14 @@ POST /api/posts
 /* 포스트 목록 조회
 GET /api/posts
 */
-       const list = ctx => {
+export const list = ctx => {
   ctx.body = posts;
 };
 
 /* 특정 포스트 조회
 GET /api/posts/:id
 */
-       const read = ctx => {
+export const read = ctx => {
   const { id } = ctx.params;
   // 주어진 id 값으로 포스트를 찾습니다.
   // 파라미터로 받아 온 값은 문자열 형식이니 파라미터를 숫자로 변환하거나,
@@ -52,7 +52,7 @@ GET /api/posts/:id
 /* 특정 포스트 제거
 DELETE /api/posts/:id
 */
-       const remove = ctx => {
+export const remove = ctx => {
   const { id } = ctx.params;
   // 해당 id를 가진 post가 몇 번째인지 확인합니다.
   const index = posts.findIndex(p => p.id.toString() === id);
@@ -73,7 +73,7 @@ DELETE /api/posts/:id
 PUT /api/posts/:id
 { title, body }
 */
-       const replace = ctx => {
+export const replace = ctx => {
   // PUT 메서드는 전체 포스트 정보를 입력하여 데이터를 통째로 교체할 때 사용합니다.
   const { id } = ctx.params;
   // 해당 id를 가진 post가 몇 번째인지 확인합니다.
@@ -99,7 +99,7 @@ PUT /api/posts/:id
 PATCH /api/posts/:id
 { title, body }
 */
-       const update = ctx => {
+export const update = ctx => {
   // PATCH 메서드는 주어진 필드만 교체합니다.
   const { id } = ctx.params;
   // 해당 id를 가진 post가 몇 번째인지 확인합니다.
