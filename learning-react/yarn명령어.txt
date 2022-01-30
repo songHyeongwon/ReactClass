@@ -73,3 +73,5 @@ yarn add express
 
 yarn start:server
 yarn build:server
+--객체 검증용 라이브러리
+yarn add @hapi/joi
