@@ -21,9 +21,9 @@ export const write = async (ctx) => {
     tags: Joi.array().items(Joi.string()).required(), //배열이고 안에 아이템은 스트링이고 + 필수값
   });
   const result = schema.validate(ctx.request.body);
-  if(result.error) {
+  if (result.error) {
     ctx.status = 400; //잘못된 요청
-    ctx.body = result.error
+    ctx.body = result.error;
     return;
   }
   const { title, body, tags } = ctx.request.body;
@@ -41,9 +41,32 @@ export const write = async (ctx) => {
 };
 
 export const list = async (ctx) => {
+  //페이지 처리 페이지요청 없으면 기본 1
+  const page = parseInt(ctx.query.page || '1' , 10);
+  if(page < 1) {
+    ctx.status = 400;
+    return;
+  }
+  console.log(`isPata = ${page}`);
   try {
-    const posts = await Post.find().exec();
-    ctx.body = posts;
+    const posts = await Post.find()
+      .sort({ _id: -1 })
+      .limit(10)
+      .skip((page -1) * 10)
+      .lean()
+      .exec();
+    //sort id-1 아이디 기준으로 역정렬
+    //limit(10) 10개 까지만
+    //skip(n) n개를 건너뛴다. 페이징 처리 기존 앞에것은 건너뛴다
+    //lean 데이터를 JSON으로 반환한다.
+    const postCount = await Post.countDocuments().exec(); //포스트 문서갯수 가져오기
+    ctx.set('Last-Page', Math.ceil(postCount / 10)); //헤더값 안에 마지막 페이지를 알려준다.
+    ctx.body = posts
+      //.map(post => post.toJSON())
+      .map(post => ({
+        ...post,
+        body : post.body.length < 200 ? post.body : `${post.body.slice(0,200)}...`,
+      }));
   } catch (e) {
     ctx.throw(500, e);
   }
@@ -84,7 +107,7 @@ export const update = async (ctx) => {
 
   //검증실패 에러일 경우
   const result = schema.validate(ctx.request.body);
-  if(result.error) {
+  if (result.error) {
     ctx.status = 400; //잘못된요청
     ctx.body = result.error;
     return;
