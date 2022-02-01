@@ -77,8 +77,16 @@ export const login = async (ctx) => {
 };
 export const check = async (ctx) => {
   //상태체크
-  
+  const { user } = ctx.state;
+  if (!user) {
+    //로그인 아님
+    ctx.status = 401;
+    return;
+  }
+  ctx.body = user;
 };
 export const logout = async (ctx) => {
   //로그아웃
+  ctx.cookies.set('access_token');
+  ctx.status = 204; //연결해제
 };
