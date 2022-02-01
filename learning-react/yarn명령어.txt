@@ -77,3 +77,5 @@ yarn build:server
 yarn add @hapi/joi
 --해시 생성 및 해시 검증
 yarn add bcrypt
+--JSON 토큰 발급 라이브러리
+yarn add jsonwebtoken

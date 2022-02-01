@@ -31,6 +31,13 @@ export const register = async (ctx) => {
 
     //응답객체에 비밀번호 제외
     ctx.body = user.serialize();
+
+    //토큰처리
+    const token = user.generateToken();
+    ctx.cookies.set('access_token', token, {
+      maxAge: 1000 * 60 * 60 * 24 * 7, //7일
+      httpOnly: true,
+    });
   } catch (e) {
     ctx.throw(500, e);
   }
@@ -58,6 +65,12 @@ export const login = async (ctx) => {
       return;
     }
     ctx.body = user.serialize();
+    //토큰처리
+    const token = user.generateToken();
+    ctx.cookies.set('access_token', token, {
+      maxAge: 1000 * 60 * 60 * 24 * 7, //7일
+      httpOnly: true,
+    });
   } catch (e) {
     ctx.throw(500, e);
   }

@@ -10,6 +10,7 @@ import bodyParser from 'koa-bodyparser';
 import mongoose from 'mongoose';
 import api from './api';
 import createFakeDate from './createFakeData';
+import jwtMiddleware from './lib/jwtMiddleware';
 
 //비구조화 할당을 통해 process.env 내부 값에 대한 레퍼런스 만들기
 const {PORT , MONGO_URI} = process.env;
@@ -35,7 +36,9 @@ const router = new Router();
 
 router.use('/api', api.routes()); //api라우터를 적용
 
+//라우터 적용전에 토큰 체크
 app.use(bodyParser());
+app.use(jwtMiddleware);
 
 //라우터 설정
 // router.get('/', (ctx) => {
