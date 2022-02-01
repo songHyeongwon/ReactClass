@@ -77,6 +77,7 @@ export const login = async (ctx) => {
 };
 export const check = async (ctx) => {
   //상태체크
+  
 };
 export const logout = async (ctx) => {
   //로그아웃
