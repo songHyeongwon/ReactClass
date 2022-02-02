@@ -4,13 +4,41 @@ import Joi from '@hapi/joi';
 
 const { ObjectId } = mongoose.Types;
 
-export const checkObjectId = (ctx, next) => {
+export const checkOwnPost = (ctx, next) => {
+  const { user, post } = ctx.state;
+  if (post.user._id.toString() !== user._id) {
+    ctx.status = 403;
+    return;
+  }
+  return next();
+};
+
+/*export const checkObjectId = (ctx, next) => {
   const { id } = ctx.params;
   if (!ObjectId.isValid(id)) {
     ctx.status = 400; //잘못된 ID
     return;
   }
   return next(); //다음 일 해라 함수로 반환할것
+};*/
+
+export const getPostById = async (ctx, next) => {
+  const { id } = ctx.params;
+  if (!ObjectId.isValid(id)) {
+    ctx.status = 400; //잘못된 ID
+    return;
+  }
+  try {
+    const post = await Post.findById(id);
+    if (!post) {
+      ctx.status = 404; //not found
+      return;
+    }
+    ctx.state.post = post;
+    return next(); //다음 일 해라 함수로 반환할것
+  } catch (e) {
+    ctx.throw(500, e);
+  }
 };
 
 export const write = async (ctx) => {
@@ -19,6 +47,7 @@ export const write = async (ctx) => {
     title: Joi.string().required(), //required() 필수값
     body: Joi.string().required(), //required() 필수값
     tags: Joi.array().items(Joi.string()).required(), //배열이고 안에 아이템은 스트링이고 + 필수값
+    //user: ctx.state.user,
   });
   const result = schema.validate(ctx.request.body);
   if (result.error) {
@@ -31,6 +60,7 @@ export const write = async (ctx) => {
     title,
     body,
     tags,
+    user: ctx.state.user,
   });
   try {
     await post.save();
@@ -42,30 +72,37 @@ export const write = async (ctx) => {
 
 export const list = async (ctx) => {
   //페이지 처리 페이지요청 없으면 기본 1
-  const page = parseInt(ctx.query.page || '1' , 10);
-  if(page < 1) {
+  const page = parseInt(ctx.query.page || '1', 10);
+  if (page < 1) {
     ctx.status = 400;
     return;
   }
-  console.log(`isPata = ${page}`);
+  //console.log(`isPata = ${page}`);
+  const { tag, username } = ctx.query;
+  //tag, username 값이 유효하면 객체 안에 넣고 그렇지 않으면 넣지 않음
+  const query = {
+    ...(username ? { 'user.username': username } : {}),
+    ...(tag ? { tags: tag } : {}),
+  };
   try {
-    const posts = await Post.find()
+    const posts = await Post.find(query)
       .sort({ _id: -1 })
       .limit(10)
-      .skip((page -1) * 10)
+      .skip((page - 1) * 10)
       .lean()
       .exec();
     //sort id-1 아이디 기준으로 역정렬
     //limit(10) 10개 까지만
     //skip(n) n개를 건너뛴다. 페이징 처리 기존 앞에것은 건너뛴다
     //lean 데이터를 JSON으로 반환한다.
-    const postCount = await Post.countDocuments().exec(); //포스트 문서갯수 가져오기
+    const postCount = await Post.countDocuments(query).exec(); //포스트 문서갯수 가져오기
     ctx.set('Last-Page', Math.ceil(postCount / 10)); //헤더값 안에 마지막 페이지를 알려준다.
     ctx.body = posts
       //.map(post => post.toJSON())
-      .map(post => ({
+      .map((post) => ({
         ...post,
-        body : post.body.length < 200 ? post.body : `${post.body.slice(0,200)}...`,
+        body:
+          post.body.length < 200 ? post.body : `${post.body.slice(0, 200)}...`,
       }));
   } catch (e) {
     ctx.throw(500, e);
@@ -73,7 +110,7 @@ export const list = async (ctx) => {
 };
 
 export const read = async (ctx) => {
-  const { id } = ctx.params;
+  /*const { id } = ctx.params;
   try {
     const post = await Post.findById(id).exec();
     if (!post) {
@@ -83,7 +120,8 @@ export const read = async (ctx) => {
     ctx.body = post;
   } catch (e) {
     ctx.throw(500, e);
-  }
+  }*/
+  ctx.body = ctx.state.post;
 };
 
 export const remove = async (ctx) => {
