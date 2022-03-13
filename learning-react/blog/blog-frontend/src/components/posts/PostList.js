@@ -52,9 +52,10 @@ const PostItem = ({ post }) => {
         username={user.username}
         publishedDate={new Date(publishedDate)}
       />
-      <Tags tags={tags} />
       <p>{body}</p>
-    </PostItemBlock>
+      <br/>
+      <Tags tags={tags} />
+     </PostItemBlock>
   );
 };
 
